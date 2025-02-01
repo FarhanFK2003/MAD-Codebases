@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize' // Replacing kotlin-android-extensions (deprecated)
+
+android {
+    namespace "com.google.codelabs.mdc.kotlin.shrine" // Required for AGP 7.0+
+
+    compileSdkVersion 34 // Use API 34 as it is stable
+    defaultConfig {
+        applicationId "com.google.codelabs.mdc.kotlin.shrine"
+        minSdkVersion 21
+        targetSdkVersion 34 // Matches compileSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+    buildFeatures {
+        viewBinding true // Enable View Binding to replace kotlin-android-extensions
+    }
+}
+
+dependencies {
+    // Updated to the latest stable versions
+    implementation 'com.google.android.material:material:1.9.0' // Updated Material Components
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0' // For backward compatibility
+    implementation 'com.android.volley:volley:1.2.1' // Updated Volley version
+    implementation 'com.google.code.gson:gson:2.9.0' // Updated Gson version
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.21" // Use latest Kotlin version
+    testImplementation 'junit:junit:4.13.2' // Updated JUnit
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5' // Updated AndroidX JUnit
+    androidTestImplementation 'androidx.test:runner:1.5.2' // Updated Test Runner
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1' // Updated Espresso
+}
